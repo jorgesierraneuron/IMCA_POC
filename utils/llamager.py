@@ -184,11 +184,12 @@ class LLamager:
 
         print(check)
 
+        st.code(check, language='text') 
+
         return value_to_analyze
     
     def __opportunity_evaluation(self, value_to_analyze: dict):
 
-        print(self.analyst)
         
         if self.analyst=='estratega':
         
