@@ -1,10 +1,12 @@
 from tavily import TavilyClient
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import streamlit as st
 
 
 class Search:
 
-    client = TavilyClient("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")
+    tavily_api_key = st.secrets["TAVILY_API_KEY"]
+    client = TavilyClient(tavily_api_key)
     queries = [
         "licitaciones públicas infraestructura República Dominicana site:listindiario.com after:2024",
         "proyectos de construcción relevantes República Dominicana site:.do after:2024",
@@ -56,9 +58,4 @@ class Search:
                 result_plain_without_duplicates.append(item)
 
         return result_plain_without_duplicates
-
-
-
-
-        
 
