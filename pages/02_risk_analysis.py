@@ -23,8 +23,8 @@ def fetch_opportunities(company_name, description, time_range, news_count):
 # --- Configuración y Lógica de la Subpágina ---
 
 # Configuración de la página (solo para esta subpágina)
-st.set_page_config(page_title="Opportunity Scanner", layout="wide") # page_title será el título de la pestaña del navegador
-st.title("📈 Opportunity Scanner") # Este será el título visible en la página
+st.set_page_config(page_title="Risk Analysis", layout="wide") # page_title será el título de la pestaña del navegador
+st.title("📈 Risk Analysis") # Este será el título visible en la página
 
 # Inicializar el estado de sesión si no existe
 if "results" not in st.session_state:
