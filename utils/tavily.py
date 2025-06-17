@@ -4,11 +4,8 @@ import streamlit as st
 
 
 class Search:
-
-    TAVILY_API_KEY = "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"
     
-    #tavily_api_key = st.secrets["TAVILY_API_KEY"]
-    tavily_api_key = TAVILY_API_KEY
+    tavily_api_key = st.secrets["TAVILY_API_KEY"]
     client = TavilyClient(tavily_api_key)
     queries = [
         "licitaciones públicas infraestructura República Dominicana site:listindiario.com after:2024",
