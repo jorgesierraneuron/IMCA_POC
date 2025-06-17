@@ -1,6 +1,7 @@
 from openai import OpenAI
 from dataclasses import dataclass
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
 import streamlit as st
 
 
@@ -15,15 +16,21 @@ class LLamager:
 
     def __init__(self, companyInfo: CompanyInfo, model: str, analyst: str):
        
+       
+       
+       
        self.client = OpenAI(api_key=st.secrets["OPENAI_KEY"])
+       #self.client = OpenAI(api_key=OPENAI_KEY)
        self.company_info = companyInfo
-       self.model = model 
-       self.model_evaluator = "o4-mini-2025-04-16"
+       self.model = "o4-mini-2025-04-16" 
+       self.model_evaluator = "gpt-4.1-nano-2025-04-14"
        self.analyst = analyst
 
 
     def __run_llm_evaluator(self, value_to_analyze: dict):
         
+        time.sleep(2)
+
         if self.analyst == "estratega":
          
 
@@ -184,12 +191,13 @@ class LLamager:
 
         print(check)
 
-        st.code(check, language='text') 
+        
 
         return value_to_analyze
     
     def __opportunity_evaluation(self, value_to_analyze: dict):
 
+        time.sleep(2)
         
         if self.analyst=='estratega':
         
@@ -327,7 +335,36 @@ class LLamager:
         return value_to_analyze
 
 
-    
+    # def analyze(self, news_list):
+    #     final_result = []
+    #     results = []
+
+    #     # First stage: run __run_llm_evaluator with 1-second stagger
+    #     with ThreadPoolExecutor(max_workers=5) as executor:
+    #         future_to_query = {}
+    #         for value in news_list:
+    #             future = executor.submit(self.__run_llm_evaluator, value)
+    #             future_to_query[future] = value
+    #             time.sleep(1)  # Stagger each submission by 1 second
+
+    #         for future in as_completed(future_to_query):
+    #             result = future.result()
+    #             results.append(result)
+
+    #     ## Second stage: run __opportunity_evaluation with 1-second stagger
+    #     with ThreadPoolExecutor(max_workers=5) as executor:
+    #         future_to_query = {}
+    #         for value in results:
+    #             if value.get("opportunity") == "True":
+    #                 future = executor.submit(self.__opportunity_evaluation, value)
+    #                 future_to_query[future] = value
+    #                 time.sleep(1)  # Stagger each submission by 1 second
+
+    #         for future in as_completed(future_to_query):
+    #             result = future.result()
+    #             final_result.append(result)
+
+    #     return final_result
 
     def analyze(self, news_list):
         

@@ -5,7 +5,10 @@ import streamlit as st
 
 class Search:
 
-    tavily_api_key = st.secrets["TAVILY_API_KEY"]
+    TAVILY_API_KEY = "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"
+    
+    #tavily_api_key = st.secrets["TAVILY_API_KEY"]
+    tavily_api_key = TAVILY_API_KEY
     client = TavilyClient(tavily_api_key)
     queries = [
         "licitaciones públicas infraestructura República Dominicana site:listindiario.com after:2024",
@@ -34,7 +37,7 @@ class Search:
         except Exception as e:
             return f"Error: {e}"
     
-    def run(self, time_range: str, max_result: int):
+    def run(self, time_range: str, max_result: int, queries: list):
 
         results = []
         with ThreadPoolExecutor(max_workers=5) as executor:
