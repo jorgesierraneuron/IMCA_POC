@@ -38,7 +38,7 @@ class Search:
 
         results = []
         with ThreadPoolExecutor(max_workers=5) as executor:
-            future_to_query = {executor.submit(self.__search_query, query, time_range, max_result): query for query in self.queries}
+            future_to_query = {executor.submit(self.__search_query, query, time_range, max_result): query for query in queries}
             for future in as_completed(future_to_query):
                 result = future.result()
                 results.append(result)
